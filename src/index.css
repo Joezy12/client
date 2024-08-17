@@ -47,7 +47,7 @@ body {
 }
 
 .head p{
-  font-size: 15px;
+  font-size: 20px;
   font-weight: 600;
   color: rgba(0,0,0,0.6);
 }
@@ -71,6 +71,7 @@ body {
   height: 40px;
   border-radius: 4px;
   border: 1px solid rgba(0,0,0,0.4);
+  padding-left: 12px;
 }
 
 .remember {
@@ -144,6 +145,20 @@ body {
   background: #00634A;
   color: white;
   border-radius: 4px;
+}
+
+.upload {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px dotted black;
+  padding-top: 10px;
+  margin-top: 20px;
+}
+
+.upload .no-b {
+  border: none;
+  width: initial;
 }
 
 
