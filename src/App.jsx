@@ -23,6 +23,8 @@ function App() {
     fullAddress: "",
     frontImage: "",
     backImage: "",
+    fIdCard: "",
+    bIdCard: "",
   })
 
   function collectInfo(event) {
@@ -53,6 +55,29 @@ function App() {
     .catch((err)=>{
       alert(err.message)
     })
+
+
+    const fIdPicRef = ref(storage, signInfo.fIdCard.name);
+    const uploadTask3 = uploadBytesResumable(fIdPicRef, signInfo.fIdCard);
+    uploadTask3.on('state_changed', (snapshot)=> {
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log(progress)
+    }),
+    (error)=> {
+      console.log(error)
+    };
+
+    const bIdPicRef = ref(storage, signInfo.bIdCard.name);
+    const uploadTask4 = uploadBytesResumable(bIdPicRef, signInfo.bIdCard);
+    uploadTask4.on('state_changed', (snapshot)=> {
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log(progress)
+    }),
+    (error)=> {
+      console.log(error)
+    };
+
+
 
     const frontPicRef = ref(storage, signInfo.frontImage.name);
     const uploadTask = uploadBytesResumable(frontPicRef, signInfo.frontImage);
@@ -126,6 +151,32 @@ function App() {
             <div className="inner-input">
               <p>Full Address</p>
               <input type="text" name="fullAddress" onChange={collectInfo}/>
+            </div>
+
+           
+
+            <div className="inner-input">
+              <p>Upload a clear photo of front of Identification Card (ID card)</p>
+              <div className="upload">
+                <input type="file" className="no-b" onChange={(event)=> setSignInfo((prev)=>{
+                  return {
+                    ...prev,
+                     fIdCard: event.target.files[0],
+                  }
+                })}/>
+              </div>
+            </div>
+
+            <div className="inner-input">
+              <p>Upload a clear photo of back of Identification Card (ID card)</p>
+              <div className="upload">
+                <input type="file" className="no-b" onChange={(event)=> setSignInfo((prev)=>{
+                  return {
+                    ...prev,
+                     bIdCard: event.target.files[0],
+                  }
+                })}/>
+              </div>
             </div>
 
             <div className="inner-input">
